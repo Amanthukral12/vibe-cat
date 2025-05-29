@@ -40,7 +40,7 @@ const VibeCat = () => {
           viewBox="0 0 24 24"
           strokeWidth={6}
           stroke="currentColor"
-          className="w-8 h-8"
+          className="w-10 h-10"
         >
           <path
             strokeLinecap="round"
@@ -66,7 +66,7 @@ const VibeCat = () => {
           viewBox="0 0 24 24"
           strokeWidth={6}
           stroke="currentColor"
-          className="w-8 h-8"
+          className="w-10 h-10"
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
         </svg>

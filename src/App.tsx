@@ -1,5 +1,13 @@
+import Navbar from "./components/Navbar";
+import VibeCat from "./components/VibeCat";
+
 function App() {
-  return <>Vibe cat</>;
+  return (
+    <div className="min-h-full w-full">
+      <Navbar />
+      <VibeCat />
+    </div>
+  );
 }
 
 export default App;

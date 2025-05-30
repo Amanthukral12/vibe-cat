@@ -1,18 +1,25 @@
 import { useEffect, useRef, useState } from "react";
+import { countryList } from "../constants/countryList";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
-import { countryList } from "../constants/countryList";
-
+import type { Topology } from "topojson-specification";
+import type {
+  GeoJsonProperties,
+  Feature,
+  Geometry,
+  FeatureCollection,
+} from "geojson";
 const RotatingGlobe = () => {
   const [totalVibeCount, setTotalVibeCount] = useState(0);
   const containerRef = useRef(null);
   const svgRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 300, height: 300 });
+
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         const { width } = entry.contentRect;
-        const size = Math.min(width, 600); // Max size = 600
+        const size = Math.min(width, 600);
         setDimensions({ width: size, height: size });
       }
     });
@@ -44,13 +51,23 @@ const RotatingGlobe = () => {
       .attr("r", projection.scale());
 
     // Load countries
+    let timer: d3.Timer;
+
     d3.json(
       "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
     ).then((worldData) => {
-      const countries = feature(
-        worldData,
-        worldData.objects.countries
-      ).features;
+      const world = worldData as Topology;
+      const geo = feature(world, world.objects.countries) as
+        | FeatureCollection<Geometry, GeoJsonProperties>
+        | Feature<Geometry, GeoJsonProperties>;
+
+      let countries: Feature<Geometry, GeoJsonProperties>[] = [];
+
+      if (geo.type === "FeatureCollection") {
+        countries = geo.features;
+      } else {
+        countries = [geo]; // If it's a single feature, wrap it in an array
+      }
 
       const countryPaths = globe
         .selectAll("path.country")
@@ -60,6 +77,7 @@ const RotatingGlobe = () => {
         .attr("class", "country")
         .attr("fill", "#13ad5e")
         .attr("stroke", "#fff")
+        .attr("stroke-width", 0.5)
         .attr("d", path)
         .on("mouseover", function () {
           d3.select(this).attr("fill", "#ffcc00");
@@ -68,14 +86,15 @@ const RotatingGlobe = () => {
           d3.select(this).attr("fill", "#13ad5e");
         });
 
-      const timer = d3.timer((elapsed) => {
-        const rotate = [elapsed * 0.02, -10];
+      // Rotation animation
+      timer = d3.timer((elapsed) => {
+        const rotate: [number, number, number] = [elapsed * 0.02, -10, 0]; // speed of rotation
         projection.rotate(rotate);
-        countryPaths.attr("d", path);
+        countryPaths.attr("d", path); // update shapes
       });
-
-      return () => timer.stop();
     });
+
+    return () => timer?.stop();
   }, [dimensions]);
 
   useEffect(() => {

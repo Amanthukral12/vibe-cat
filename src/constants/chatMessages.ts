@@ -21,14 +21,14 @@ export const initialChats = [
     countryCode: "in",
   },
   {
-    id: 2,
+    id: 4,
     text: "What kind of project",
     sender: "other",
     type: "text",
     countryCode: "gb",
   },
   {
-    id: 3,
+    id: 5,
     text: "Just a vibe cat meme website",
     sender: "user",
     type: "text",

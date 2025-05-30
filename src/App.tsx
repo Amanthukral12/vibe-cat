@@ -15,7 +15,7 @@ function App() {
       <Navbar />
       <VibeCat />
       <MusicPlayer />
-      <div className="flex flex-col md:flex-row w-4/5 md:w-3/5 mx-auto flex-grow">
+      <div className="flex flex-col md:flex-row w-full md:w-3/5 max-w-full mx-auto flex-grow">
         <Leaderboard />
         <ChatComponent />
       </div>

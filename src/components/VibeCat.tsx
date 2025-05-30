@@ -72,7 +72,7 @@ const VibeCat = () => {
       <div className="flex items-center justify-center gap-4">
         <button onClick={handlePrev} className="p-2">
           <motion.div
-            className="flex items-center text-2xl absolute top-60 right-1/4 -rotate-35"
+            className="flex items-center text-xs md:text-2xl absolute top-80 right-0 md:top-70 md:right-1/4 -rotate-35"
             animate={{
               scale: [1, 1.05, 1],
               opacity: [1, 0.7, 1],
@@ -108,7 +108,7 @@ const VibeCat = () => {
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
-          className="w-140 h-140  rounded-full shadow-2xl cursor-pointer"
+          className="w-60 h-60 md:w-140 md:h-140  rounded-full shadow-2xl cursor-pointer"
         />
 
         <button onClick={handleNext} className="p-2">

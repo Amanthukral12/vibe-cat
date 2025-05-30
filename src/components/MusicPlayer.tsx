@@ -5,6 +5,7 @@ const MusicPlayer = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const playTrack = () => {
     if (audioRef.current) {
@@ -21,6 +22,9 @@ const MusicPlayer = () => {
   };
 
   const togglePlay = () => {
+    if (!hasInteracted) {
+      setHasInteracted(true);
+    }
     if (isPlaying) {
       pauseTrack();
     } else {
@@ -29,7 +33,24 @@ const MusicPlayer = () => {
   };
 
   const handleTrackSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentTrack(Number(e.target.value));
+    const newTrack = Number(e.target.value);
+    setCurrentTrack(newTrack);
+
+    if (!hasInteracted) {
+      setHasInteracted(true);
+    }
+
+    if (audioRef.current) {
+      audioRef.current.src = music[newTrack].src;
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn("Playback failed:", err);
+        });
+    }
   };
 
   const handleNext = () => {
@@ -45,10 +66,11 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = music[currentTrack].src;
-      audioRef.current.play();
-      setIsPlaying(true);
+      if (hasInteracted && isPlaying) {
+        audioRef.current.play().catch((err) => console.warn(err));
+      }
     }
-  }, [currentTrack]);
+  }, [currentTrack, hasInteracted]);
 
   const handleEnded = () => {
     handleNext();

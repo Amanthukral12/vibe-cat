@@ -1,8 +1,8 @@
 const Navbar = () => {
   return (
-    <div className="w-4/5 mx-auto flex justify-between py-4 mt-4 mb-10 px-4 rounded-2xl gradient-border">
+    <div className="w-4/5 mx-auto flex justify-between mt-4 mb-16 px-4 rounded-2xl gradient-border text-2xl">
       <button>Menu</button>
-      <span className="text-2xl">Vibe Cat</span>
+      <img src="./assets/animated/VIBECAT.gif" className="h-40" alt="" />
       <button>Buy Now</button>
     </div>
   );

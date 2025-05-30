@@ -47,7 +47,7 @@
 
     .gradient-border {
   --borderWidth: 5px;
-  background: #1D1F20;
+  background: #000000;
   position: relative;
   border-radius: var(--borderWidth);
 }
@@ -77,3 +77,26 @@
 		background-position: 0% 50%;
 	}
 }
+
+
+  .rainbow-text {
+    background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5, #ffbe0b);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowShift 2s ease infinite;
+    font-weight: bold;
+  }
+  
+  @keyframes rainbowShift {
+  
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  }

@@ -3,10 +3,12 @@ import Leaderboard from "./components/Leaderboard";
 import MusicPlayer from "./components/MusicPlayer";
 import Navbar from "./components/Navbar";
 import VibeCat from "./components/VibeCat";
+import VibeTrail from "./components/VibeTrail";
 
 function App() {
   return (
     <div className="min-h-full w-full">
+      <VibeTrail />
       <Navbar />
       <VibeCat />
       <MusicPlayer />

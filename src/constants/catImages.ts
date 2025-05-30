@@ -1,27 +1,37 @@
 export const catImages = [
   {
     index: 1,
-    imageUrl: "./assets/images/Vibe_Transparent_HD_Image.PNG",
-    gifUrl: "./assets/animated/vibing_cat_hd.gif",
+    imageUrl: "./assets/images/1.webp",
+    gifUrl: "./assets/animated/1.gif",
   },
   {
     index: 2,
-    imageUrl: "./assets/images/VibeCat_Angled_1.png",
-    gifUrl: "./assets/animated/Vibe_Animated_Icon_Black.gif",
+    imageUrl: "./assets/images/2.jpg",
+    gifUrl: "./assets/animated/2.gif",
   },
   {
     index: 3,
-    imageUrl: "./assets/images/VibeCat_Angled_2.png",
-    gifUrl: "./assets/animated/vibecat-rainbow.gif",
+    imageUrl: "./assets/images/3.jpg",
+    gifUrl: "./assets/animated/3.gif",
   },
   {
     index: 4,
-    imageUrl: "./assets/images/VibeCat_Angled3.png",
-    gifUrl: "./assets/animated/vibecatsunglasses.gif",
+    imageUrl: "./assets/images/4.jpg",
+    gifUrl: "./assets/animated/4.gif",
   },
   {
     index: 5,
-    imageUrl: "./assets/images/Vibe_Official_Icon.png",
-    gifUrl: "./assets/animated/Vibe_Animated_Icon_Transparent.gif",
+    imageUrl: "./assets/images/5.jpg",
+    gifUrl: "./assets/animated/5.gif",
+  },
+  {
+    index: 6,
+    imageUrl: "./assets/images/6.png",
+    gifUrl: "./assets/animated/6.gif",
+  },
+  {
+    index: 7,
+    imageUrl: "./assets/images/7.PNG",
+    gifUrl: "./assets/animated/7.gif",
   },
 ];

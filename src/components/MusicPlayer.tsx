@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { music } from "../constants/music";
 import { motion } from "framer-motion";
+import { FaPlayCircle } from "react-icons/fa";
+import { FaPauseCircle } from "react-icons/fa";
+import { IoPlayBackCircleSharp } from "react-icons/io5";
+import { IoPlayForwardCircleSharp } from "react-icons/io5";
 const MusicPlayer = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [currentTrack, setCurrentTrack] = useState(0);
@@ -77,53 +81,47 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="w-3/5  mx-auto bg-white/10 backdrop-blur-lg shadow-lg rounded-xl p-6 my-8 text-white border border-white/20">
-      <h2 className="text-2xl font-semibold text-center mb-4">
-        🎵 Music Player
-      </h2>
-
-      {isPlaying && (
-        <div className="flex justify-center items-end h-16 gap-1 mb-4">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-1 bg-indigo-400 rounded"
-              animate={{
-                height: [8, 32, 12],
-              }}
-              transition={{
-                duration: 0.8,
-                repeat: Infinity,
-                delay: i * 0.1,
-              }}
-            />
-          ))}
-        </div>
-      )}
+    <div className="w-3/5  mx-auto bg-white/10 backdrop-blur-lg shadow-lg rounded-xl pt-4 my-8 text-white border border-white/20">
+      <div className="flex justify-center w-full absolute bottom-0 items-end h-16 gap-1">
+        {[...Array(100)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="w-1 bg-indigo-400 rounded"
+            animate={{
+              height: [8, 32, 12],
+            }}
+            transition={{
+              duration: 0.8,
+              repeat: Infinity,
+              delay: i * 0.1,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="flex items-center justify-between mx-4 md:mx-14 gap-6 mb-3">
-        <button onClick={handlePrev} className="text-2xl hover:text-indigo-300">
-          ⏮️
+        <button onClick={handlePrev}>
+          <IoPlayBackCircleSharp className="h-10 w-10" />
         </button>
-        <button onClick={togglePlay} className="text-3xl hover:text-indigo-300">
-          {isPlaying ? "⏸️" : "▶️"}
+        <button onClick={togglePlay}>
+          {isPlaying ? (
+            <FaPauseCircle className="h-10 w-10" />
+          ) : (
+            <FaPlayCircle className="h-10 w-10" />
+          )}
         </button>
-        <button onClick={handleNext} className="text-2xl hover:text-indigo-300">
-          ⏭️
+        <button onClick={handleNext}>
+          <IoPlayForwardCircleSharp className="h-10 w-10" />
         </button>
       </div>
 
       <div className="text-center mb-4">
-        <span className="text-sm opacity-70">Now Playing:</span>
         <div className="text-lg font-medium text-indigo-200">
           {music[currentTrack].title}
         </div>
       </div>
 
       <div className="text-sm text-center mb-2">
-        <label htmlFor="track-select" className="block mb-1 text-indigo-300">
-          Select a Track:
-        </label>
         <select
           id="track-select"
           value={currentTrack}

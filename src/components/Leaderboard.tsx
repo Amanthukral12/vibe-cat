@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { countryList } from "../constants/countryList";
 import { GrScorecard } from "react-icons/gr";
+import { motion, AnimatePresence } from "framer-motion";
 
-const BATCH_SIZE = 20; // Load 20 countries at a time
+const BATCH_SIZE = 20;
 
 const Leaderboard = () => {
   const [visibleCountries, setVisibleCountries] = useState(
@@ -48,16 +49,22 @@ const Leaderboard = () => {
         <GrScorecard className="mr-2" /> Leaderboard
       </div>
       <div>
-        {visibleCountries.map((country, index) => (
-          <div
-            key={index}
-            className="flex justify-between px-4 py-2 border-b border-white/20"
-          >
-            <span>{index + 1}</span>
-            <span>{country.name}</span>
-            <span>{country.vibe}</span>
-          </div>
-        ))}
+        <AnimatePresence>
+          {visibleCountries.map((country, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex justify-between px-4 py-2 border-b border-white/20"
+            >
+              <span>{index + 1}</span>
+              <span>{country.name}</span>
+              <span>{country.vibe}</span>
+            </motion.div>
+          ))}
+        </AnimatePresence>
         {!hasMore && (
           <div className="text-center py-4 text-sm text-white/50">
             🎉 All countries loaded!

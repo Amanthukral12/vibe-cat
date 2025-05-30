@@ -86,7 +86,7 @@ const MusicPlayer = () => {
         {[...Array(100)].map((_, i) => (
           <motion.div
             key={i}
-            className="w-1 bg-indigo-400 rounded"
+            className="w-1 bg-indigo-600  rounded"
             animate={{
               height: [8, 32, 12],
             }}

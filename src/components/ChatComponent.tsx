@@ -22,14 +22,11 @@ const Chat = () => {
     `https://flagcdn.com/48x36/${code.toLowerCase()}.png`;
 
   return (
-    <div className="relative h-[500px] w-full max-w-md bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg flex flex-col overflow-hidden">
-      {/* Header */}
+    <div className="relative h-[500px] w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-lg flex flex-col overflow-hidden">
       <div className="px-4 py-2 bg-white/20 text-white flex justify-center items-center font-semibold rounded-t-xl border-b border-white/10">
         <IoChatbubbleSharp className="mr-2" />
         Chat
       </div>
-
-      {/* Chat messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {chats.map((chat) => (
           <div
@@ -72,7 +69,6 @@ const Chat = () => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Area */}
       <div className="p-2 border-t border-white/10 bg-white/20 flex items-center gap-2">
         <input
           type="text"
@@ -85,7 +81,6 @@ const Chat = () => {
         </button>
       </div>
 
-      {/* Floating GIF Send Button */}
       <button
         onClick={sendGif}
         className="absolute bottom-20 right-4  text-white  rounded-full shadow-lg  transition"

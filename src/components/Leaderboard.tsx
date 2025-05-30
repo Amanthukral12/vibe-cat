@@ -47,7 +47,7 @@ const Leaderboard = () => {
   return (
     <div
       ref={containerRef}
-      className="h-[500px] w-full bg-white/10 backdrop-blur-lg shadow-lg mr-6 overflow-y-auto mb-8"
+      className="h-[500px] w-full bg-white/10 backdrop-blur-lg rounded-xl shadow-lg mr-6 overflow-y-auto mb-8"
     >
       <div className="text-center py-2 bg-white/40 w-full mb-2 text-2xl flex justify-center items-center">
         <GrScorecard className="mr-2" /> Leaderboard
